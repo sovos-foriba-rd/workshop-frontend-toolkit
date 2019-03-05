@@ -1,0 +1,185 @@
+$colors:(primary:linear-gradient(-225deg, #3A7BD5 0%, #34AEE1 50%, #00D2FF 100%),
+primary-light: lighten(#005DFF, 40%),
+primary-dark: darken(#005DFF, 40%),
+accent:#e7e43c,
+card__header--color:rgb(23, 152, 212));
+
+$padding:15px;
+$borders:15px;
+
+@function color($color-name) {
+    @return map-get($colors, $color-name)
+}
+
+$desktop:840px;
+$mobile:840px;
+
+@mixin desktop {
+    @media (min-width: #{$desktop}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: #{$mobile}) {
+        @content;
+    }
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+
+    #bg {
+
+        clip-path: polygon(0 0, 100% 21%, 100% 74%, 0% 100%);
+        background-image: color(primary);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+
+        @include desktop {
+           clip-path: polygon(0 0, 100% 21%, 100% 74%, 0% 100%);
+        }
+    }
+
+    header {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        font-size: 60px;
+        img {
+            padding: $padding;
+            display: block;
+            width:220px;
+        }
+    }
+   
+   footer{
+      position: fixed;
+      bottom: -4px;
+      right: 10px;
+      
+      a{
+         color:#0076ad;
+         font-family: 'Shadows Into Light', cursive;
+         font-size:100px;
+         padding: 10px 20px;
+         text-decoration:none;
+         transition: all 0.7s ease;
+
+         @include mobile {
+                font-size:50px;
+                padding: $padding $padding * 4;
+                margin:0px;
+            }
+      }
+   }
+}
+
+main {
+
+    @include desktop {
+        display: grid;
+        grid-template-columns: 50% auto;
+        grid-template-areas: "primary card";
+    }
+
+    section#card {
+        background: #fff;
+        padding: 20px;
+        margin: 1em auto;
+        border-radius: $borders;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+        width: 80%;
+
+        @include desktop {
+            grid-area: card;
+            height: fit-content;
+            align-self: center;
+            margin: 1em;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                margin-bottom: 10px;
+                font-family: 'Dosis', sans-serif;
+                strong {
+                    display: inline-block;
+                    margin-left: max(40px);
+                    margin-top: 10px;
+                }
+            }
+
+            p {
+                font-size: 2em;
+                margin-top: 10px;
+                color: color(card__header--color);
+
+                @include desktop {
+                    width: 30%;
+                    font-size: 2em;
+                    line-height: .9em;
+                }
+            }
+        }
+    }
+
+    section#primary {
+        color: #fff;
+        padding: $padding;
+        text-align: center;
+      
+        @include desktop {
+            grid-area: primary;
+            text-align: left;
+            margin: 4em 0 0 4em;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-top: 10px;
+            font-family: 'Fredericka the Great', cursive;
+            @include desktop {
+                width: 30%;
+                font-size: 4em;
+                line-height: .9em;
+            }
+        }
+
+        p {
+            font-size: 1.5em;
+        }
+
+        a {
+            color: color(primary-dark);
+            border-radius: $borders;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            background-color: color(accent);
+            text-align: center;
+            margin: 50px auto 0 auto;
+            padding: $padding;
+            font-family: 'Dosis', sans-serif;
+            @include desktop {
+                display: inline-block;
+                padding: $padding $padding * 4;
+            }
+           @include mobile {
+                display: inline-block;
+                padding: $padding $padding * 4;
+                margin:0px;
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+<div id="bg"></div>
+
+    <header>
+        <img src="https://www.foriba.com/wp-content/uploads/2018/10/logo-foriba-opt.png">
+    </header>
+
+    <main>
+
+        <section id="card">
+            <p *ngIf="data.length < 1">Yukleniyor</p>
+            <ul *ngIf="data.length > 0">
+                <p>Çözümlerimiz</p>
+                <li *ngFor="let item of data">
+                    <i class="far fa-bookmark"></i>
+                    <strong>{{ item }}</strong>
+                </li>
+               
+            </ul>
+        </section>
+        <section id="primary">
+            <h1>Foriba çok güzel gelsene...</h1>
+            <p>ik@foriba.com'a başvurularınızı bekliyoruz.</p>
+
+            <a href="https://www.foriba.com/kariyer">Başvur</a>
+        </section>
+    </main>
+
+<footer>
+   <a href="#">#lifeatForiba</a>
+</footer>
